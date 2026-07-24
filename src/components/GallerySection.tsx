@@ -77,7 +77,6 @@ export default function GallerySection() {
   // Jumbled / Shuffled order using deterministic seed algorithm
   const shuffledImages = useMemo(() => {
     const list = [...rawImages];
-    // Deterministic pseudo-random shuffle (Fisher-Yates with fixed seed)
     let seed = 42;
     const pseudoRandom = () => {
       const x = Math.sin(seed++) * 10000;
@@ -158,18 +157,8 @@ export default function GallerySection() {
       <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col justify-between h-full">
         
         {/* Gallery Title & Banner Section Header (Title Aligned on the Right) */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8 border-b border-amber-500/30 pb-6">
+        <div className="flex items-center justify-end mb-8 border-b border-amber-500/30 pb-6">
           
-          {/* Subtitle / Tagline on Left */}
-          <div className="text-left space-y-1">
-            <span className="font-heading text-amber-400 text-sm font-semibold tracking-widest uppercase">
-              $REAL MEME COLLECTION
-            </span>
-            <p className="font-sans text-zinc-300 text-xs sm:text-sm font-medium">
-              61 Unique Artworks &amp; Memes Created by the Ibex Republic
-            </p>
-          </div>
-
           {/* Banner Title on the Right */}
           <div className="relative flex items-center justify-end">
             <div className="px-6 py-3 rounded-2xl bg-gradient-to-r from-[#F0BA33] via-[#D49E24] to-[#A37210] border-2 border-amber-300 shadow-[0_0_30px_rgba(212,158,36,0.5)] transform -rotate-1">
