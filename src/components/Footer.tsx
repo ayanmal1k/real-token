@@ -114,8 +114,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* BOTTOM GOLDEN MARQUEE TICKER BANNER */}
-      <div className="w-full bg-[#E5B537] text-[#0A0A06] py-3.5 border-t-2 border-amber-400 overflow-hidden select-none">
+      {/* BOTTOM GOLDEN MARQUEE TICKER BANNER - Golden Metallic Gradient Background */}
+      <div className="w-full bg-gradient-to-r from-[#F0BA33] via-[#D49E24] to-[#A37210] text-[#0A0A06] py-3.5 border-t-2 border-amber-400 overflow-hidden select-none">
         <div className="animate-marquee-infinite flex items-center gap-12 whitespace-nowrap">
           {[...Array(16)].map((_, idx) => (
             <div key={idx} className="flex items-center gap-4 shrink-0">

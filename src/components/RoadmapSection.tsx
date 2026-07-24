@@ -105,7 +105,7 @@ export default function RoadmapSection() {
     <section
       id="roadmap"
       ref={sectionRef}
-      className="relative w-full bg-[#E5B537] text-[#0A0A06] pt-14 md:pt-20 lg:py-24 pb-0 overflow-hidden border-t-2 border-amber-400/50"
+      className="relative w-full bg-gradient-to-r from-[#F0BA33] via-[#D49E24] to-[#A37210] text-[#0A0A06] pt-14 md:pt-20 lg:py-24 pb-0 overflow-hidden border-t-2 border-amber-400/50"
     >
       {/* Absolute Mountain Image - Attached Flush to Right & Bottom Edge */}
       <div

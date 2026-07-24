@@ -24,7 +24,7 @@ export default function EcosystemSection() {
   ];
 
   return (
-    <section className="relative w-full bg-[#E5B537] text-[#0A0A06] pt-12 md:pt-16 lg:py-24 pb-0 overflow-hidden border-t-2 border-amber-400/40">
+    <section className="relative w-full bg-gradient-to-r from-[#F0BA33] via-[#D49E24] to-[#A37210] text-[#0A0A06] pt-12 md:pt-16 lg:py-24 pb-0 overflow-hidden border-t-2 border-amber-400/40">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Responsive Container: Mobile = Text top, Image bottom (flex-col-reverse); Desktop = Side-by-side (lg:flex-row) */}
         <div className="flex flex-col-reverse lg:flex-row items-center lg:items-center justify-between gap-8 lg:gap-16">
@@ -32,7 +32,7 @@ export default function EcosystemSection() {
           {/* Left Side: Goat Image (Attached flush to the bottom on mobile viewports, bigger image) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="w-full lg:w-5/12 flex justify-center items-end relative mt-4 lg:mt-0 self-end"
