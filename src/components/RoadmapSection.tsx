@@ -14,7 +14,7 @@ export default function RoadmapSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Animate the connecting line scale
+      // 1. Connecting Line Animation: Scrubs/Re-animates cleanly on every scroll up and down
       if (lineRef.current) {
         gsap.fromTo(
           lineRef.current,
@@ -26,34 +26,49 @@ export default function RoadmapSection() {
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top 75%",
-              toggleActions: "play none none reverse",
+              end: "bottom 30%",
+              toggleActions: "restart reverse restart reverse",
             },
           }
         );
       }
 
-      // Animate each roadmap phase sequentially on scroll
+      // 2. Sequential Phase Reveal: Re-triggers on scroll up and scroll down
       phasesRef.current.forEach((el, index) => {
         if (el) {
           gsap.fromTo(
             el,
-            { opacity: 0, y: 50, scale: 0.85 },
+            { opacity: 0, y: 60, scale: 0.8 },
             {
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: 0.7,
-              delay: index * 0.25,
+              duration: 0.8,
+              delay: index * 0.2,
               ease: "back.out(1.7)",
               scrollTrigger: {
                 trigger: sectionRef.current,
                 start: "top 70%",
-                toggleActions: "play none none reverse",
+                end: "bottom 20%",
+                toggleActions: "restart reverse restart reverse",
               },
             }
           );
         }
       });
+
+      // 3. Continuous Gentle Floating Loop for Phase Icon Circles
+      const icons = sectionRef.current?.querySelectorAll(".roadmap-icon-circle");
+      if (icons && icons.length > 0) {
+        gsap.to(icons, {
+          y: -8,
+          duration: 2.2,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          stagger: 0.25,
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -92,8 +107,10 @@ export default function RoadmapSection() {
       ref={sectionRef}
       className="relative w-full bg-[#E5B537] text-[#0A0A06] pt-14 md:pt-20 lg:py-24 pb-0 overflow-hidden border-t-2 border-amber-400/50"
     >
-      {/* Absolute Mountain Image - Attached flush to Bottom and Right end on both PC & Mobile */}
-      <div className="absolute right-0 bottom-0 pointer-events-none z-0 w-[280px] h-[300px] sm:w-[380px] sm:h-[420px] lg:w-[540px] lg:h-[580px] xl:w-[620px] xl:h-[660px]">
+      {/* Absolute Mountain Image - Attached Flush to Right & Bottom Edge */}
+      <div
+        className="absolute right-0 bottom-0 pointer-events-none z-0 w-[280px] h-[300px] sm:w-[380px] sm:h-[420px] lg:w-[540px] lg:h-[580px] xl:w-[620px] xl:h-[660px]"
+      >
         <Image
           src="/mountain.png"
           alt="Mountain Peak with Goat Flag"
@@ -130,7 +147,7 @@ export default function RoadmapSection() {
                 className="flex flex-col items-center text-center group space-y-3"
               >
                 {/* Black Circular Icon Circle */}
-                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0A0A06] text-[#E5B537] flex items-center justify-center border-4 border-[#E5B537] shadow-[0_8px_20px_rgba(0,0,0,0.3)] group-hover:scale-110 transition-transform duration-300 z-10">
+                <div className="roadmap-icon-circle relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0A0A06] text-[#E5B537] flex items-center justify-center border-4 border-[#E5B537] shadow-[0_8px_20px_rgba(0,0,0,0.35)] group-hover:scale-110 transition-transform duration-300 z-10">
                   <span className="material-symbols-outlined text-4xl sm:text-5xl font-bold">
                     {phase.icon}
                   </span>
