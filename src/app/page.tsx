@@ -7,6 +7,8 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import EcosystemSection from "@/components/EcosystemSection";
 import TokenomicsSection from "@/components/TokenomicsSection";
 import RoadmapSection from "@/components/RoadmapSection";
+import CommunitySection from "@/components/CommunitySection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -265,6 +267,12 @@ export default function Home() {
 
       {/* Roadmap Section */}
       <RoadmapSection />
+
+      {/* Community Movement Section */}
+      <CommunitySection />
+
+      {/* Footer Section */}
+      <Footer />
 
     </div>
   );
