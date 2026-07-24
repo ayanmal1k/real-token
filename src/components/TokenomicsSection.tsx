@@ -1,13 +1,112 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Copy, Check } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function TokenomicsSection() {
   const [copied, setCopied] = useState(false);
   const contractAddress = "EVNWDT4QtZv4tBGMaFpygGq8bxEEcZMUZxMmhtaspump";
+
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const emblemRef = useRef<HTMLDivElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
+  const rightContentRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // 1. Tokenomic Goat Emblem Reveal (Re-triggers on scroll up & down)
+      if (emblemRef.current) {
+        gsap.fromTo(
+          emblemRef.current,
+          { opacity: 0, scale: 0.75, rotation: -8 },
+          {
+            opacity: 1,
+            scale: 1,
+            rotation: 0,
+            duration: 1,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              end: "bottom 20%",
+              toggleActions: "restart reverse restart reverse",
+            },
+          }
+        );
+      }
+
+      // 2. Vertical Divider Line Growth
+      if (dividerRef.current) {
+        gsap.fromTo(
+          dividerRef.current,
+          { scaleY: 0, transformOrigin: "top center" },
+          {
+            scaleY: 1,
+            duration: 1.1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              end: "bottom 20%",
+              toggleActions: "restart reverse restart reverse",
+            },
+          }
+        );
+      }
+
+      // 3. Right Content Reveal
+      if (rightContentRef.current) {
+        gsap.fromTo(
+          rightContentRef.current,
+          { opacity: 0, x: 50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%",
+              end: "bottom 20%",
+              toggleActions: "restart reverse restart reverse",
+            },
+          }
+        );
+      }
+
+      // 4. 4 Stat Cards Sequential Pop-In
+      statsRef.current.forEach((el, idx) => {
+        if (el) {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 40, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              delay: idx * 0.1,
+              ease: "back.out(1.5)",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 65%",
+                end: "bottom 15%",
+                toggleActions: "restart reverse restart reverse",
+              },
+            }
+          );
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(contractAddress);
@@ -23,8 +122,11 @@ export default function TokenomicsSection() {
   ];
 
   return (
-    <section id="tokenomics" className="relative w-full bg-[#060608] text-white py-14 md:py-20 lg:py-24 border-t border-amber-500/20 overflow-hidden">
-      
+    <section
+      id="tokenomics"
+      ref={sectionRef}
+      className="relative w-full bg-[#060608] text-white py-14 md:py-20 lg:py-24 border-t border-amber-500/20 overflow-hidden"
+    >
       {/* Background Subtle Radial Glow */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[130px] pointer-events-none z-0" />
 
@@ -32,11 +134,8 @@ export default function TokenomicsSection() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-16">
           
           {/* LEFT SIDE: TOKENOMIC GOAT IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div
+            ref={emblemRef}
             className="w-full lg:w-5/12 flex items-center justify-center relative"
           >
             <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] lg:w-[400px] lg:h-[400px] flex items-center justify-center">
@@ -52,17 +151,17 @@ export default function TokenomicsSection() {
                 priority
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* VERTICAL GLOWING DIVIDER LINE */}
-          <div className="hidden lg:block w-[1px] bg-gradient-to-b from-transparent via-amber-500/40 via-50% to-transparent self-stretch my-2 shrink-0" />
+          <div
+            ref={dividerRef}
+            className="hidden lg:block w-[1px] bg-gradient-to-b from-transparent via-amber-500/40 via-50% to-transparent self-stretch my-2 shrink-0"
+          />
 
           {/* RIGHT SIDE: BUILT FOR GROWTH & STAT CARDS */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+          <div
+            ref={rightContentRef}
             className="w-full lg:w-6/12 flex flex-col justify-between space-y-8 text-left"
           >
             {/* Main Headline */}
@@ -77,9 +176,10 @@ export default function TokenomicsSection() {
 
             {/* 4 Stat Cards in Rounded Boxes */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {stats.map((stat) => (
+              {stats.map((stat, idx) => (
                 <div
                   key={stat.sub}
+                  ref={(el) => { statsRef.current[idx] = el; }}
                   className="bg-[#0B0B0E] border border-amber-500/30 rounded-2xl p-5 flex flex-col items-center justify-center text-center space-y-1.5 hover:border-amber-400/70 transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,158,36,0.25)] group"
                 >
                   <span className="font-heading font-bold text-3xl sm:text-4xl text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5D0] via-[#E0A726] to-[#A37210] group-hover:scale-105 transition-transform">
@@ -123,7 +223,7 @@ export default function TokenomicsSection() {
               </button>
             </div>
 
-          </motion.div>
+          </div>
 
         </div>
       </div>
