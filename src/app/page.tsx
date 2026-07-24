@@ -19,20 +19,23 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen w-full bg-[#060608] text-white overflow-x-hidden selection:bg-amber-500/30 selection:text-amber-200">
-      {/* Dynamic Background Layer - Pure Bright Background Imagery (No Darkening) */}
+      {/* Dynamic Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Desktop Background - Original Un-darkened Image */}
+        {/* Desktop Background */}
         <div
           className="hidden md:block absolute inset-0 bg-cover bg-right-top bg-no-repeat transition-all duration-700"
           style={{ backgroundImage: "url('/PC%20BG.png')" }}
         />
-        {/* Mobile Background - Original Un-darkened Image */}
+        {/* Mobile Background */}
         <div
           className="block md:hidden absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700"
           style={{ backgroundImage: "url('/hero-mobile.png')" }}
         />
 
-        {/* Minimal Soft Vignette Edge for Seamless Navbar Integration (No Image Darkening) */}
+        {/* 20% Dark Background Overlay */}
+        <div className="absolute inset-0 bg-[#060608]/10 z-10 pointer-events-none" />
+
+        {/* Soft Vignette Top for Navbar */}
         <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-[#060608]/70 to-transparent z-10 pointer-events-none" />
       </div>
 
@@ -78,8 +81,8 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
                   className={`relative font-heading text-sm tracking-widest transition-colors duration-200 py-1 ${link.active
-                      ? "text-amber-400 font-semibold"
-                      : "text-zinc-200 hover:text-amber-300"
+                    ? "text-amber-400 font-semibold"
+                    : "text-zinc-200 hover:text-amber-300"
                     }`}
                 >
                   {link.name}
@@ -93,7 +96,7 @@ export default function Home() {
               ))}
             </nav>
 
-            {/* Right Action Button (Desktop) - Dark Rich Gold Gradient */}
+            {/* Right Action Button (Desktop) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -155,7 +158,7 @@ export default function Home() {
           )}
         </AnimatePresence>
 
-        {/* Hero Section Main Layout - Shifted Left on Big Screens */}
+        {/* Hero Section Main Layout */}
         <main className="flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:pl-16 xl:pl-24 2xl:pl-32 flex items-center justify-start py-12 md:py-24 lg:py-32">
           <div className="w-full max-w-xl lg:max-w-2xl text-left space-y-6 md:space-y-8">
 
@@ -179,7 +182,7 @@ export default function Home() {
               </h1>
             </motion.div>
 
-            {/* Subheadline Tagline - Rich Darker Gold */}
+            {/* Subheadline Tagline */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -205,7 +208,7 @@ export default function Home() {
               In a space full of memecoins, we choose to focus on real value, real use cases &amp; real community. <span className="text-amber-300 font-medium">$REAL</span> is built different.
             </motion.p>
 
-            {/* Main CTA Button - Dark Premium Metallic Gold */}
+            {/* Main CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -222,6 +225,27 @@ export default function Home() {
             </motion.div>
           </div>
         </main>
+
+        {/* Infinite Marquee Ticker Banner */}
+        <section className="relative z-30 w-full bg-[#050507] border-y border-amber-500/25 py-4 overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.9)]">
+          <div className="animate-marquee-infinite flex items-center gap-12 sm:gap-16 select-none">
+            {[...Array(16)].map((_, i) => (
+              <div key={i} className="flex items-center gap-4 whitespace-nowrap shrink-0 group">
+                <div className="relative w-8 h-8 sm:w-10 sm:h-10 transition-transform duration-300 group-hover:scale-110">
+                  <Image
+                    src="/golden-goat.png"
+                    alt="Golden Goat Icon"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="font-heading font-bold text-lg sm:text-2xl md:text-3xl tracking-widest text-white uppercase drop-shadow-[0_2px_8px_rgba(255,255,255,0.2)]">
+                  $REAL TO THE MOON
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

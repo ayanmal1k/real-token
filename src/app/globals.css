@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #070709;
+  --background: #060608;
   --foreground: #f4f4f6;
   --surface: #101014;
   --border: rgba(255, 255, 255, 0.08);
-  --accent-orange: #fa5d29;
-  --accent-blue: #49b3fc;
+  --accent-gold: #D49E24;
   
   /* Spatial & Motion Tokens */
   --ease-awwwards: cubic-bezier(0.16, 1, 0.3, 1);
@@ -32,14 +31,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Deep Black Background Ambient Glow */
-.bg-custom-dark {
-  background-color: #070709;
-  background-image: 
-    radial-gradient(circle at 50% 0%, rgba(250, 93, 41, 0.04) 0%, transparent 60%),
-    radial-gradient(circle at 85% 30%, rgba(73, 179, 252, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 15% 70%, rgba(250, 93, 41, 0.02) 0%, transparent 50%);
-  background-attachment: fixed;
+/* Infinite Marquee Animation Keyframes */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-scroll 25s linear infinite;
 }
 
 /* Custom Sleek Scrollbar */
@@ -48,7 +54,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #070709;
+  background: #060608;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -62,7 +68,7 @@ body {
 
 /* Accessible Focus States */
 :focus-visible {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid var(--accent-gold);
   outline-offset: 3px;
 }
 
@@ -75,5 +81,9 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  
+  .animate-marquee-infinite {
+    animation: none !important;
   }
 }
