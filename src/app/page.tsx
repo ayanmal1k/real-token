@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import EcosystemSection from "@/components/EcosystemSection";
+import TokenomicsSection from "@/components/TokenomicsSection";
+import RoadmapSection from "@/components/RoadmapSection";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,7 +23,7 @@ export default function Home() {
   return (
     <div className="w-full bg-[#060608] text-white overflow-x-hidden selection:bg-amber-500/30 selection:text-amber-200">
       
-      {/* HERO SECTION - Background strictly scoped to this section */}
+      {/* HERO SECTION */}
       <section id="home" className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden">
         
         {/* Dynamic Hero Background Layer */}
@@ -164,8 +166,8 @@ export default function Home() {
         </AnimatePresence>
 
         {/* Hero Section Main Content */}
-        <main className="relative z-20 flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:pl-16 xl:pl-24 2xl:pl-32 flex items-center justify-start py-16 md:py-24 lg:py-32">
-          <div className="w-full max-w-xl lg:max-w-2xl text-left space-y-6 md:space-y-8">
+        <main className="relative z-20 flex-1 w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:pl-16 xl:pl-24 2xl:pl-32 flex items-start md:items-center justify-start pt-4 sm:pt-8 md:py-24 lg:py-32 pb-12">
+          <div className="w-full max-w-xl lg:max-w-2xl text-left space-y-5 sm:space-y-6 md:space-y-8">
 
             {/* Main Headline */}
             <motion.div
@@ -192,7 +194,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="pt-1"
+              className="pt-0.5 sm:pt-1"
             >
               <p className="font-heading text-lg sm:text-xl md:text-2xl font-semibold tracking-[0.18em] text-[#E0A726] uppercase flex flex-wrap items-center gap-x-2.5 gap-y-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 <span>REAL VISION.</span>
@@ -218,11 +220,11 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
-              className="pt-4"
+              className="pt-2 sm:pt-4"
             >
               <a
                 href="#republic"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-heading text-base sm:text-lg font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE38B] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_25px_rgba(212,158,36,0.5)] hover:shadow-[0_0_45px_rgba(212,158,36,0.8)] hover:scale-105 active:scale-95 tracking-widest uppercase group"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-heading text-base sm:text-lg font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE899] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_25px_rgba(212,158,36,0.5)] hover:shadow-[0_0_45px_rgba(212,158,36,0.8)] hover:scale-105 active:scale-95 tracking-widest uppercase group"
               >
                 <span>JOIN THE REPUBLIC</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 stroke-[2.5]" />
@@ -257,6 +259,12 @@ export default function Home() {
       <div id="about" className="relative z-30">
         <EcosystemSection />
       </div>
+
+      {/* Tokenomics Section */}
+      <TokenomicsSection />
+
+      {/* Roadmap Section */}
+      <RoadmapSection />
 
     </div>
   );
