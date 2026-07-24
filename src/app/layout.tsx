@@ -28,6 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        {/* Google Material Icons Library */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,600,1,0&display=swap"
+        />
+      </head>
       <body className={`${oswald.variable} ${outfit.variable} bg-[#060608] min-h-screen font-sans antialiased text-slate-100 selection:bg-yellow-500/30 selection:text-yellow-300`}>
         {children}
       </body>
