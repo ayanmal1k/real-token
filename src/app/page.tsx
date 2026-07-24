@@ -8,6 +8,7 @@ import EcosystemSection from "@/components/EcosystemSection";
 import TokenomicsSection from "@/components/TokenomicsSection";
 import RoadmapSection from "@/components/RoadmapSection";
 import CommunitySection from "@/components/CommunitySection";
+import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
     { name: "TOKENOMICS", href: "#tokenomics" },
     { name: "ROADMAP", href: "#roadmap" },
     { name: "COMMUNITY", href: "#community" },
+    { name: "GALLERY", href: "#gallery" },
     { name: "FAQ", href: "#faq" },
   ];
 
@@ -270,6 +272,9 @@ export default function Home() {
 
       {/* Community Movement Section */}
       <CommunitySection />
+
+      {/* Meme Gallery Section (Pinned GSAP Horizontal Scroll) */}
+      <GallerySection />
 
       {/* Footer Section */}
       <Footer />
