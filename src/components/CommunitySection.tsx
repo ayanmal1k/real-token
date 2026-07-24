@@ -4,6 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Send, ShoppingCart } from "lucide-react";
 
 export default function CommunitySection() {
+  const pumpFunUrl = "https://pump.fun/coin/EVNWDT4QtZv4tBGMaFpygGq8bxEEcZMUZxMmhtaspump";
+  const telegramUrl = "https://t.me/Realibexcoin";
+  const twitterUrl = "https://x.com/Realibexcoin";
+
   const cards = [
     { title: "ACTIVE COMMUNITY", icon: "groups" },
     { title: "DAILY UPDATES", icon: "campaign" },
@@ -59,10 +63,12 @@ export default function CommunitySection() {
               Join the elite. Hold the asset. Build the future.
             </p>
 
-            {/* Primary Action Button */}
+            {/* Primary Action Button -> Pump.fun */}
             <div>
               <a
-                href="#republic"
+                href={pumpFunUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-heading text-base sm:text-lg font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE38B] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_25px_rgba(212,158,36,0.5)] hover:shadow-[0_0_40px_rgba(212,158,36,0.8)] hover:scale-105 active:scale-95 tracking-widest uppercase group"
               >
                 <span>JOIN $REAL REPUBLIC</span>
@@ -75,10 +81,10 @@ export default function CommunitySection() {
               
               {/* Telegram Button */}
               <a
-                href="https://t.me"
+                href={telegramUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="px-5 py-3 rounded-full font-heading text-xs sm:text-sm font-bold text-amber-300 bg-[#0F0E14]/80 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md"
+                className="px-5 py-3 rounded-full font-heading text-xs sm:text-sm font-bold text-amber-300 bg-[#0F0E14]/80 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md hover:scale-105"
               >
                 <Send className="w-4 h-4 text-amber-400" />
                 <span>TELEGRAM</span>
@@ -86,10 +92,10 @@ export default function CommunitySection() {
 
               {/* X / Twitter Button */}
               <a
-                href="https://x.com"
+                href={twitterUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="px-5 py-3 rounded-full font-heading text-xs sm:text-sm font-bold text-amber-300 bg-[#0F0E14]/80 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md"
+                className="px-5 py-3 rounded-full font-heading text-xs sm:text-sm font-bold text-amber-300 bg-[#0F0E14]/80 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md hover:scale-105"
               >
                 <svg className="w-4 h-4 fill-amber-400" viewBox="0 0 24 24">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -97,9 +103,11 @@ export default function CommunitySection() {
                 <span>X / TWITTER</span>
               </a>
 
-              {/* BUY NOW Button */}
+              {/* BUY NOW Button -> Pump.fun */}
               <a
-                href="#buy"
+                href={pumpFunUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="px-6 py-3 rounded-full font-heading text-xs sm:text-sm font-bold text-[#080501] bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase shadow-[0_0_15px_rgba(243,197,68,0.4)] hover:scale-105 active:scale-95"
               >
                 <ShoppingCart className="w-4 h-4 text-[#080501] stroke-[2.5]" />

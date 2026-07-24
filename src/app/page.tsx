@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Send } from "lucide-react";
 import EcosystemSection from "@/components/EcosystemSection";
 import TokenomicsSection from "@/components/TokenomicsSection";
 import RoadmapSection from "@/components/RoadmapSection";
@@ -14,6 +14,10 @@ import Footer from "@/components/Footer";
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const pumpFunUrl = "https://pump.fun/coin/EVNWDT4QtZv4tBGMaFpygGq8bxEEcZMUZxMmhtaspump";
+  const telegramUrl = "https://t.me/Realibexcoin";
+  const twitterUrl = "https://x.com/Realibexcoin";
+
   const navLinks = [
     { name: "HOME", href: "#home", active: true },
     { name: "ABOUT", href: "#about" },
@@ -21,7 +25,6 @@ export default function Home() {
     { name: "ROADMAP", href: "#roadmap" },
     { name: "COMMUNITY", href: "#community" },
     { name: "GALLERY", href: "#gallery" },
-    { name: "FAQ", href: "#faq" },
   ];
 
   return (
@@ -106,7 +109,7 @@ export default function Home() {
               ))}
             </nav>
 
-            {/* Right Action Button (Desktop) */}
+            {/* Right Action Button (Desktop) - Links to Pump.fun */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -114,10 +117,12 @@ export default function Home() {
               className="hidden lg:flex items-center"
             >
               <a
-                href="#join"
+                href={pumpFunUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="px-6 py-2.5 rounded-full font-heading text-sm font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE38B] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_20px_rgba(212,158,36,0.4)] hover:shadow-[0_0_30px_rgba(212,158,36,0.7)] hover:scale-105 active:scale-95 tracking-wider uppercase"
               >
-                JOIN $REAL
+                BUY $REAL
               </a>
             </motion.div>
 
@@ -158,11 +163,13 @@ export default function Home() {
                   </a>
                 ))}
                 <a
-                  href="#join"
+                  href={pumpFunUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
                   className="mt-4 w-full text-center py-3 rounded-full font-heading font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] shadow-[0_0_20px_rgba(212,158,36,0.5)] tracking-widest uppercase"
                 >
-                  JOIN $REAL
+                  BUY $REAL
                 </a>
               </div>
             </motion.div>
@@ -219,20 +226,49 @@ export default function Home() {
               In a space full of memecoins, we choose to focus on real value, real use cases &amp; real community. <span className="text-amber-300 font-medium">$REAL</span> is built different.
             </motion.p>
 
-            {/* Main CTA Button */}
+            {/* Main CTA Button & Social Action Links Below */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
-              className="pt-2 sm:pt-4"
+              className="pt-2 sm:pt-4 space-y-4"
             >
-              <a
-                href="#republic"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-heading text-base sm:text-lg font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE899] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_25px_rgba(212,158,36,0.5)] hover:shadow-[0_0_45px_rgba(212,158,36,0.8)] hover:scale-105 active:scale-95 tracking-widest uppercase group"
-              >
-                <span>JOIN THE REPUBLIC</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 stroke-[2.5]" />
-              </a>
+              <div>
+                <a
+                  href={pumpFunUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-heading text-base sm:text-lg font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE899] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_25px_rgba(212,158,36,0.5)] hover:shadow-[0_0_45px_rgba(212,158,36,0.8)] hover:scale-105 active:scale-95 tracking-widest uppercase group"
+                >
+                  <span>JOIN THE REPUBLIC</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300 stroke-[2.5]" />
+                </a>
+              </div>
+
+              {/* Telegram & X Social Buttons Below Hero CTA */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                <a
+                  href={telegramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-2.5 rounded-full font-heading text-xs sm:text-sm font-bold text-amber-300 bg-[#0F0E14]/80 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md hover:scale-105"
+                >
+                  <Send className="w-4 h-4 text-amber-400" />
+                  <span>TELEGRAM</span>
+                </a>
+
+                <a
+                  href={twitterUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-5 py-2.5 rounded-full font-heading text-xs sm:text-sm font-bold text-amber-300 bg-[#0F0E14]/80 border border-amber-500/30 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md hover:scale-105"
+                >
+                  <svg className="w-4 h-4 fill-amber-400" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  <span>X / TWITTER</span>
+                </a>
+              </div>
             </motion.div>
           </div>
         </main>

@@ -4,12 +4,16 @@ import Image from "next/image";
 import { Send, ShoppingCart } from "lucide-react";
 
 export default function Footer() {
+  const pumpFunUrl = "https://pump.fun/coin/EVNWDT4QtZv4tBGMaFpygGq8bxEEcZMUZxMmhtaspump";
+  const telegramUrl = "https://t.me/Realibexcoin";
+  const twitterUrl = "https://x.com/Realibexcoin";
+
   const quickLinks = [
     { name: "About", href: "#about" },
     { name: "Tokenomics", href: "#tokenomics" },
     { name: "Roadmap", href: "#roadmap" },
     { name: "Community", href: "#community" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Gallery", href: "#gallery" },
   ];
 
   return (
@@ -50,7 +54,7 @@ export default function Footer() {
               
               {/* X / Twitter */}
               <a
-                href="https://x.com"
+                href={twitterUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="w-12 h-12 rounded-full bg-[#F0BA33] text-[#080501] flex items-center justify-center hover:bg-[#FFE38B] hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(240,186,51,0.4)]"
@@ -64,7 +68,7 @@ export default function Footer() {
 
               {/* Telegram */}
               <a
-                href="https://t.me"
+                href={telegramUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="w-12 h-12 rounded-full bg-[#F0BA33] text-[#080501] flex items-center justify-center hover:bg-[#FFE38B] hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(240,186,51,0.4)]"
@@ -74,11 +78,13 @@ export default function Footer() {
                 <Send className="w-5 h-5 text-[#080501] fill-[#080501]" />
               </a>
 
-              {/* BUY NOW Button */}
+              {/* BUY NOW Button -> Pump.fun */}
               <a
-                href="#buy"
+                href={pumpFunUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="px-5 py-3 rounded-full font-heading text-xs sm:text-sm font-bold text-[#080501] bg-gradient-to-r from-[#F0BA33] to-[#D49E24] hover:from-[#FFE38B] hover:to-[#B88414] transition-all duration-300 flex items-center gap-2 tracking-wider uppercase shadow-[0_0_15px_rgba(240,186,51,0.4)] hover:scale-105 active:scale-95"
-                title="Buy Now"
+                title="Buy Now on Pump.fun"
               >
                 <ShoppingCart className="w-4 h-4 text-[#080501] stroke-[2.5]" />
                 <span>BUY NOW</span>
