@@ -92,7 +92,18 @@ export default function RoadmapSection() {
       ref={sectionRef}
       className="relative w-full bg-[#E5B537] text-[#0A0A06] pt-14 md:pt-20 lg:py-24 pb-0 overflow-hidden border-t-2 border-amber-400/50"
     >
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pb-12 lg:pb-0">
+      {/* Absolute Mountain Image - Attached flush to Bottom and Right end on both PC & Mobile */}
+      <div className="absolute right-0 bottom-0 pointer-events-none z-0 w-[280px] h-[300px] sm:w-[380px] sm:h-[420px] lg:w-[540px] lg:h-[580px] xl:w-[620px] xl:h-[660px]">
+        <Image
+          src="/mountain.png"
+          alt="Mountain Peak with Goat Flag"
+          fill
+          className="object-contain object-right-bottom filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.35)]"
+          priority
+        />
+      </div>
+
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pb-16 lg:pb-12">
         
         {/* Header */}
         <div className="mb-10 lg:mb-16 text-left">
@@ -101,63 +112,46 @@ export default function RoadmapSection() {
           </h2>
         </div>
 
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-10 lg:gap-12">
+        {/* Roadmap Phases Grid with Horizontal Connecting Line */}
+        <div className="w-full lg:w-10/12 relative z-10">
           
-          {/* LEFT SIDE: Mountain Image (Attached flush to bottom on mobile) */}
-          <div className="w-full lg:w-4/12 flex justify-center lg:justify-start items-end relative self-end mt-6 lg:mt-0">
-            <div className="relative w-[320px] h-[340px] sm:w-[420px] sm:h-[450px] lg:w-[480px] lg:h-[500px]">
-              <Image
-                src="/mountain.png"
-                alt="Mountain Peak with Goat Flag"
-                fill
-                className="object-contain object-bottom filter drop-shadow-[0_12px_30px_rgba(0,0,0,0.4)]"
-                priority
-              />
-            </div>
-          </div>
+          {/* Horizontal Connecting Line behind icons (Desktop) */}
+          <div
+            ref={lineRef}
+            className="hidden md:block absolute top-[44px] left-[5%] right-[5%] h-[3px] bg-[#0A0A06] z-0"
+          />
 
-          {/* RIGHT SIDE: Roadmap Phases Grid with Connecting Line */}
-          <div className="w-full lg:w-8/12 relative">
-            
-            {/* Horizontal Connecting Line behind icons (Desktop) */}
-            <div
-              ref={lineRef}
-              className="hidden md:block absolute top-[44px] left-[5%] right-[5%] h-[3px] bg-[#0A0A06] z-0"
-            />
-
-            {/* Phases Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 relative z-10">
-              {phases.map((phase, i) => (
-                <div
-                  key={phase.num}
-                  ref={(el) => { phasesRef.current[i] = el; }}
-                  className="flex flex-col items-center text-center group space-y-3"
-                >
-                  {/* Black Circular Icon Circle */}
-                  <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0A0A06] text-[#E5B537] flex items-center justify-center border-4 border-[#E5B537] shadow-[0_8px_20px_rgba(0,0,0,0.3)] group-hover:scale-110 transition-transform duration-300 z-10">
-                    <span className="material-symbols-outlined text-4xl sm:text-5xl font-bold">
-                      {phase.icon}
-                    </span>
-                  </div>
-
-                  {/* Phase Number & Title */}
-                  <div className="space-y-1 pt-1">
-                    <span className="font-heading font-semibold text-xs tracking-widest text-[#0A0A06]/70 uppercase block">
-                      {phase.num}
-                    </span>
-                    <h3 className="font-heading font-bold text-lg sm:text-xl tracking-wider text-[#0A0A06] uppercase leading-snug">
-                      {phase.title}
-                    </h3>
-                  </div>
-
-                  {/* Description */}
-                  <p className="font-sans text-xs sm:text-sm font-medium leading-relaxed text-[#0A0A06]/85 max-w-[220px]">
-                    {phase.desc}
-                  </p>
+          {/* Phases Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 relative z-10">
+            {phases.map((phase, i) => (
+              <div
+                key={phase.num}
+                ref={(el) => { phasesRef.current[i] = el; }}
+                className="flex flex-col items-center text-center group space-y-3"
+              >
+                {/* Black Circular Icon Circle */}
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#0A0A06] text-[#E5B537] flex items-center justify-center border-4 border-[#E5B537] shadow-[0_8px_20px_rgba(0,0,0,0.3)] group-hover:scale-110 transition-transform duration-300 z-10">
+                  <span className="material-symbols-outlined text-4xl sm:text-5xl font-bold">
+                    {phase.icon}
+                  </span>
                 </div>
-              ))}
-            </div>
 
+                {/* Phase Number & Title */}
+                <div className="space-y-1 pt-1">
+                  <span className="font-heading font-semibold text-xs tracking-widest text-[#0A0A06]/70 uppercase block">
+                    {phase.num}
+                  </span>
+                  <h3 className="font-heading font-bold text-lg sm:text-xl tracking-wider text-[#0A0A06] uppercase leading-snug">
+                    {phase.title}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <p className="font-sans text-xs sm:text-sm font-medium leading-relaxed text-[#0A0A06]/85 max-w-[220px]">
+                  {phase.desc}
+                </p>
+              </div>
+            ))}
           </div>
 
         </div>
