@@ -1,12 +1,70 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { ArrowRight, Send, ShoppingCart } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function CommunitySection() {
   const pumpFunUrl = "https://pump.fun/coin/EVNWDT4QtZv4tBGMaFpygGq8bxEEcZMUZxMmhtaspump";
   const telegramUrl = "https://t.me/Realibexcoin";
   const twitterUrl = "https://x.com/Realibexcoin";
+
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const leftTextRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // 1. Left Text & Action Buttons Reveal (Re-triggers on scroll up & down)
+      if (leftTextRef.current) {
+        gsap.fromTo(
+          leftTextRef.current,
+          { opacity: 0, x: -50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+              end: "bottom 20%",
+              toggleActions: "restart reverse restart reverse",
+            },
+          }
+        );
+      }
+
+      // 2. 4 Feature Cards Sequential Pop-In (Re-triggers on scroll up & down)
+      cardsRef.current.forEach((el, idx) => {
+        if (el) {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 45, scale: 0.88 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.7,
+              delay: idx * 0.12,
+              ease: "back.out(1.6)",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 65%",
+                end: "bottom 15%",
+                toggleActions: "restart reverse restart reverse",
+              },
+            }
+          );
+        }
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const cards = [
     { title: "ACTIVE COMMUNITY", icon: "groups" },
@@ -16,8 +74,11 @@ export default function CommunitySection() {
   ];
 
   return (
-    <section id="community" className="relative w-full min-h-screen lg:min-h-[85vh] flex items-center justify-center overflow-hidden border-t-2 border-amber-500/20 bg-[#060608]">
-      
+    <section
+      id="community"
+      ref={sectionRef}
+      className="relative w-full min-h-screen lg:min-h-[85vh] flex items-center justify-center overflow-hidden border-t-2 border-amber-500/20 bg-[#060608]"
+    >
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Desktop Background Image */}
@@ -41,11 +102,8 @@ export default function CommunitySection() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
           
           {/* Left Side: Text Content & Actions */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <div
+            ref={leftTextRef}
             className="w-full lg:w-6/12 text-left space-y-6 md:space-y-8"
           >
             {/* Headline */}
@@ -115,19 +173,14 @@ export default function CommunitySection() {
               </a>
 
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Side: 4 Dark Feature Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="w-full lg:w-6/12 grid grid-cols-2 sm:grid-cols-4 gap-4"
-          >
-            {cards.map((card) => (
+          <div className="w-full lg:w-6/12 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {cards.map((card, idx) => (
               <div
                 key={card.title}
+                ref={(el) => { cardsRef.current[idx] = el; }}
                 className="bg-[#0B0B0E]/90 border border-amber-500/30 backdrop-blur-md rounded-2xl p-6 sm:p-5 flex flex-col items-center justify-center text-center space-y-3 hover:border-amber-400/80 transition-all duration-300 shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(212,158,36,0.3)] group"
               >
                 <span className="material-symbols-outlined text-4xl sm:text-5xl text-[#F3C544] group-hover:scale-110 transition-transform">
@@ -138,7 +191,7 @@ export default function CommunitySection() {
                 </span>
               </div>
             ))}
-          </motion.div>
+          </div>
 
         </div>
       </div>
