@@ -3,11 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight, Send } from "lucide-react";
+import { Menu, X, ArrowRight, Send, Gamepad2 } from "lucide-react";
 import EcosystemSection from "@/components/EcosystemSection";
 import TokenomicsSection from "@/components/TokenomicsSection";
 import RoadmapSection from "@/components/RoadmapSection";
 import CommunitySection from "@/components/CommunitySection";
+import GameSection from "@/components/GameSection";
 import GallerySection from "@/components/GallerySection";
 import Footer from "@/components/Footer";
 
@@ -24,15 +25,16 @@ export default function Home() {
     { name: "TOKENOMICS", href: "#tokenomics" },
     { name: "ROADMAP", href: "#roadmap" },
     { name: "COMMUNITY", href: "#community" },
+    { name: "GAME", href: "#game" },
     { name: "GALLERY", href: "#gallery" },
   ];
 
   return (
     <div className="w-full bg-[#060608] text-white overflow-x-hidden selection:bg-amber-500/30 selection:text-amber-200">
-      
+
       {/* HERO SECTION */}
       <section id="home" className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden">
-        
+
         {/* Dynamic Hero Background Layer */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           {/* Desktop Background Image */}
@@ -92,11 +94,10 @@ export default function Home() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.08 }}
-                  className={`relative font-heading text-sm tracking-widest transition-colors duration-200 py-1 ${
-                    link.active
+                  className={`relative font-heading text-sm tracking-widest transition-colors duration-200 py-1 ${link.active
                       ? "text-amber-400 font-semibold"
                       : "text-zinc-200 hover:text-amber-300"
-                  }`}
+                    }`}
                 >
                   {link.name}
                   {link.active && (
@@ -109,18 +110,27 @@ export default function Home() {
               ))}
             </nav>
 
-            {/* Right Action Button (Desktop) - Links to Pump.fun */}
+            {/* Right Action Buttons (Desktop) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="hidden lg:flex items-center"
+              className="hidden lg:flex items-center gap-3"
             >
+              <a
+                href="https://real-mountainclimber.netlify.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2.5 rounded-full font-heading text-xs xl:text-sm font-bold text-amber-300 bg-[#0F0E14]/90 border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/20 transition-all duration-300 flex items-center gap-2 tracking-wider uppercase backdrop-blur-md hover:scale-105 shadow-[0_0_15px_rgba(212,158,36,0.2)] group"
+              >
+                <Gamepad2 className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform duration-300" />
+                <span>PLAY GAME</span>
+              </a>
               <a
                 href={pumpFunUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="px-6 py-2.5 rounded-full font-heading text-sm font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE38B] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_20px_rgba(212,158,36,0.4)] hover:shadow-[0_0_30px_rgba(212,158,36,0.7)] hover:scale-105 active:scale-95 tracking-wider uppercase"
+                className="px-6 py-2.5 rounded-full font-heading text-xs xl:text-sm font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] hover:from-[#FFE38B] hover:to-[#B88414] transition-all duration-300 shadow-[0_0_20px_rgba(212,158,36,0.4)] hover:shadow-[0_0_30px_rgba(212,158,36,0.7)] hover:scale-105 active:scale-95 tracking-wider uppercase"
               >
                 BUY $REAL
               </a>
@@ -155,19 +165,28 @@ export default function Home() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`font-heading text-lg tracking-widest transition-colors py-2 border-b border-zinc-800/60 ${
-                      link.active ? "text-amber-400 font-bold" : "text-zinc-300 hover:text-amber-300"
-                    }`}
+                    className={`font-heading text-lg tracking-widest transition-colors py-2 border-b border-zinc-800/60 ${link.active ? "text-amber-400 font-bold" : "text-zinc-300 hover:text-amber-300"
+                      }`}
                   >
                     {link.name}
                   </a>
                 ))}
                 <a
+                  href="https://real-mountainclimber.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mt-4 w-full text-center py-3 rounded-full font-heading font-bold text-amber-300 bg-[#0F0E14] border border-amber-500/40 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(212,158,36,0.3)] tracking-widest uppercase"
+                >
+                  <Gamepad2 className="w-5 h-5 text-amber-400" />
+                  <span>PLAY GAME</span>
+                </a>
+                <a
                   href={pumpFunUrl}
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="mt-4 w-full text-center py-3 rounded-full font-heading font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] shadow-[0_0_20px_rgba(212,158,36,0.5)] tracking-widest uppercase"
+                  className="w-full text-center py-3 rounded-full font-heading font-bold text-[#080501] bg-gradient-to-b from-[#F0BA33] via-[#D49E24] to-[#A37210] shadow-[0_0_20px_rgba(212,158,36,0.5)] tracking-widest uppercase"
                 >
                   BUY $REAL
                 </a>
@@ -308,6 +327,9 @@ export default function Home() {
 
       {/* Community Movement Section */}
       <CommunitySection />
+
+      {/* $REAL Mountain Climber P2E Game Section */}
+      <GameSection />
 
       {/* Meme Gallery Section (Pinned GSAP Horizontal Scroll) */}
       <GallerySection />
