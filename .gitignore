@@ -30,5 +30,4 @@ next-env.d.ts
 .DS_Store
 *.pem
 .idea/
-.vscode/
 config.bat
