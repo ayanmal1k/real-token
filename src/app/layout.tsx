@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Oswald, Outfit } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -115,6 +116,11 @@ export default function RootLayout({
         className={`${oswald.variable} ${outfit.variable} bg-[#060608] min-h-screen font-sans antialiased text-slate-100 selection:bg-yellow-500/30 selection:text-yellow-300`}
       >
         {children}
+        <Script
+          src="https://cdn.zanderio.ai/widget/loader.js"
+          data-id="wdg_qOZGlp59oHL1J2vAVshj2PEP"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
